@@ -1,0 +1,51 @@
+// C++ program for the above approach
+// easy
+#include <iostream>
+using namespace std;
+int* rotateArray(int A[], int start, int end)
+{
+    while (start < end) {
+        int temp = A[start];
+        A[start] = A[end];
+        A[end] = temp;
+        start++;
+        end--;
+    }
+    return A;
+}
+void leftRotate(int A[], int a, int k)
+{
+    // if the value of k ever exceeds the length of the
+    // array
+    int c = k % a;
+ 
+    // initializing array D so that we always
+    // have a clone of the original array to rotate
+    int D[a];
+    for (int i = 0; i < a; i++)
+        D[i] = A[i];
+ 
+    rotateArray(D, 0, c - 1);
+    rotateArray(D, c, a - 1);
+    rotateArray(D, 0, a - 1);
+ 
+    // printing the rotated array
+    for (int i = 0; i < a; i++)
+        cout << D[i] << " ";
+    cout << "\n";
+}
+int main()
+{
+    int A[] = { 1, 3, 5, 7, 9 };
+    int n = sizeof(A) / sizeof(A[0]);
+ 
+    int k = 2;
+    leftRotate(A, n, k);
+ 
+    k = 3;
+    leftRotate(A, n, k);
+ 
+    k = 4;
+    leftRotate(A, n, k);
+    return 0;
+}
